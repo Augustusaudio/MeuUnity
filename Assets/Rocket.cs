@@ -8,6 +8,7 @@ public class Rocket : MonoBehaviour {
 	
 	
 	Rigidbody rigidBody;
+	
 	// Use this for initialization
 	void Start () {
 		rigidBody = GetComponent<Rigidbody>();
@@ -23,8 +24,8 @@ public class Rocket : MonoBehaviour {
 	if (Input.GetKey(KeyCode.Space))	{rigidBody.AddRelativeForce(Vector3.up);} 
 	//can thrust while rotating
 	
-	{if (Input.GetKey(KeyCode.A))	    {print("Rotating Left");}
-	else if  (Input.GetKey(KeyCode.D))		{print("Rotating Right");}
+	{if (Input.GetKey(KeyCode.A))	    {transform.Rotate(Vector3.forward);}
+	else if  (Input.GetKey(KeyCode.D))		{transform.Rotate(-Vector3.forward);}
 	}
 
 	}
