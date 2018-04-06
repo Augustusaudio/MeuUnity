@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+// todo: fix lighting bug
 public class Rocket : MonoBehaviour {
-
-	
 	
     [SerializeField] float rcsThrust = 100f;
     [SerializeField] float mainThrust = 100f;
 	Rigidbody rigidBody;
 	AudioSource audioSource;
+    enum State {Alive, Dead, Transcend};
+    State state = State.Alive;
 	// Use this for initialization
 	void Start () {
 		rigidBody = GetComponent<Rigidbody>();
@@ -19,30 +17,39 @@ public class Rocket : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Thrust();
-		Rotate();
+        //todo somewhere: stop rocket sound when dead
+        if (state==State.Alive)  
+		{Thrust();
+		Rotate();}
 	}
     void OnCollisionEnter(Collision collision)
     {
+        if (state !=State.Alive) {return;}
+
         switch (collision.gameObject.tag)
         {
             case "Friendly":
-            //do nothing
-            print ("ok");//to do: remove this line
-            break;                        
-    
-            case "Fuel":
-            print ("Fuel");
-            break;
-            default:
-            print ("Dead"); // to do: remove this
-            // kills player
-            break;
-            
+                //do nothing
+                break;
 
-        
+            case "Finish":
+                state = State.Transcend;
+                Invoke("LoadNextLevel", 1f); //parameterise this time
+                break;
+            default:
+                print("Dead");
+                state= State.Dead;
+                Invoke ("LoadFirstLevel", 1f);
+                break;
         }
+
     }
+    private void LoadFirstLevel()
+    {SceneManager.LoadScene(0);
+    } 
+    private void LoadNextLevel()
+    {SceneManager.LoadScene(1);// todo: allow for more than 2 levels
+    } 
 private void Thrust()
     {
         if (Input.GetKey(KeyCode.Space))
@@ -54,7 +61,7 @@ private void Thrust()
         else
         { audioSource.Stop(); }
 	}
-        
+      
     private void Rotate()   //can thrust while rotating
    
 
