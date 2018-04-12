@@ -752,7 +752,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rcsT: 300
-  mainT: 600
+  mainT: 50000
   mainEngine: {fileID: 8300000, guid: b7da6dfea0dea674aada91536f0d00f9, type: 3}
   death: {fileID: 8300000, guid: e5d2bef20917a4e40926dbb764cec9da, type: 3}
   success: {fileID: 8300000, guid: c2cbcdc17164bd6469e94169a6001118, type: 3}

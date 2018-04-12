@@ -86,7 +86,7 @@ private void RespondToThrustInput()
 
     private void ApplyThrust()
     {
-        rigidBody.AddRelativeForce(Vector3.up * mainT);
+        rigidBody.AddRelativeForce(Vector3.up * mainT * Time.deltaTime);
         if (!audioSource.isPlaying) //so it doesn't layer
         { audioSource.PlayOneShot(mainEngine);} 
         mainEngineParticles.Play();
