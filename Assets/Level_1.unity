@@ -156,7 +156,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a10cabe02e2c8714880feebf39af5e63, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &331460548
+--- !u!1001 &266802860
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -195,9 +195,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 1165108189250606, guid: f1df102949e344f44bed7f24ed144e71, type: 2}
-      propertyPath: m_Name
-      value: Rocket 1
+    - target: {fileID: 4603144166933200, guid: f1df102949e344f44bed7f24ed144e71, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 3.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603144166933200, guid: f1df102949e344f44bed7f24ed144e71, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.87
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1df102949e344f44bed7f24ed144e71, type: 2}

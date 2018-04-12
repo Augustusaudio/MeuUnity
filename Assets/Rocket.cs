@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-// todo: fix lighting bug
 public class Rocket : MonoBehaviour {
 	
     [SerializeField] float rcsT = 100f;
     [SerializeField] float mainT = 100f;
     [SerializeField] AudioClip mainEngine;
+    [SerializeField] AudioClip death;
+    [SerializeField] AudioClip success;
+    [SerializeField] ParticleSystem mainEngineParticles;
+    [SerializeField] ParticleSystem deathParticles;
+    [SerializeField] ParticleSystem successParticles;
 	Rigidbody rigidBody;
 	AudioSource audioSource;
     enum State {Alive, Dead, Transcend};
@@ -18,7 +22,7 @@ public class Rocket : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //todo somewhere: stop rocket sound when dead
+       
         if (state==State.Alive)  
 		{RespondToThrustInput();
 		RespondToRotateInput();}
@@ -34,17 +38,33 @@ public class Rocket : MonoBehaviour {
                 break;
 
             case "Finish":
-                state = State.Transcend;
-                Invoke("LoadNextLevel", 1f); //parameterise this time
+                StartSuccessSequence();
                 break;
             default:
-                print("Dead");
-                state= State.Dead;
-                Invoke ("LoadFirstLevel", 1f);
+            case "Dead":
+                StartDeathSequence();
                 break;
         }
 
     }
+
+    private void StartSuccessSequence()
+    {
+        state = State.Transcend;
+        audioSource.Stop();
+        audioSource.PlayOneShot(success);
+        successParticles.Play();
+        Invoke("LoadNextLevel", 1f); //parameterise this time
+    }
+      private void StartDeathSequence()
+    {
+        state = State.Dead;
+        audioSource.Stop();
+        audioSource.PlayOneShot(death);
+        deathParticles.Play();
+        Invoke("LoadFirstLevel", 1f);
+    }
+
     private void LoadFirstLevel()
     {SceneManager.LoadScene(0);
     } 
@@ -58,14 +78,18 @@ private void RespondToThrustInput()
             ApplyThrust();
         }
         else
-        { audioSource.Stop(); }
+        { audioSource.Stop();
+        mainEngineParticles.Stop(); }
+        
+
 	}
 
     private void ApplyThrust()
     {
         rigidBody.AddRelativeForce(Vector3.up * mainT);
         if (!audioSource.isPlaying) //so it doesn't layer
-        { audioSource.PlayOneShot(mainEngine); }
+        { audioSource.PlayOneShot(mainEngine);} 
+        mainEngineParticles.Play();
     }
 
     private void RespondToRotateInput()   //can T while rotating
