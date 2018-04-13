@@ -18,14 +18,15 @@ public class Oscillator : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//todo protect against period is zero
+		if (period <=Mathf.Epsilon) {return;}//protect against period is zero
 		// set movement factor automatically
-		float cycles = Time.time / period; //grows continually from 0
+		float cycles = Time.time / period;
+		 //grows continually from 0
 		const float tau = Mathf.PI * 2;// about 6.28
 		float rawSineWave = Mathf.Sin(cycles*tau);
 		
 		movementFactor = rawSineWave / 2f + 0.5f;
 		Vector3 offset = movementVector * movementFactor;
 		transform.position = startingPos+ offset;
-	}
+		}
 }
