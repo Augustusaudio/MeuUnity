@@ -203,51 +203,35 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4406813192832010, guid: 1de63813e83f153468eb11db1615f40f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -2.2144895
+      value: -13.12
       objectReference: {fileID: 0}
     - target: {fileID: 4406813192832010, guid: 1de63813e83f153468eb11db1615f40f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 22.622328
+      value: 24.54
       objectReference: {fileID: 0}
     - target: {fileID: 4406813192832010, guid: 1de63813e83f153468eb11db1615f40f, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -59.746914
+      value: -83.63
       objectReference: {fileID: 0}
     - target: {fileID: 4406813192832010, guid: 1de63813e83f153468eb11db1615f40f, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.08438373
+      value: -0.039709777
       objectReference: {fileID: 0}
     - target: {fileID: 4406813192832010, guid: 1de63813e83f153468eb11db1615f40f, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.011360328
+      value: -0.011392018
       objectReference: {fileID: 0}
     - target: {fileID: 4406813192832010, guid: 1de63813e83f153468eb11db1615f40f, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.00096243
+      value: 0.000453069
       objectReference: {fileID: 0}
     - target: {fileID: 4406813192832010, guid: 1de63813e83f153468eb11db1615f40f, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.9963681
+      value: -0.9991462
       objectReference: {fileID: 0}
     - target: {fileID: 4406813192832010, guid: 1de63813e83f153468eb11db1615f40f, type: 2}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4406813192832010, guid: 1de63813e83f153468eb11db1615f40f, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4406813192832010, guid: 1de63813e83f153468eb11db1615f40f, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1.1315852
-      objectReference: {fileID: 0}
-    - target: {fileID: 4406813192832010, guid: 1de63813e83f153468eb11db1615f40f, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 9.682
-      objectReference: {fileID: 0}
-    - target: {fileID: 4406813192832010, guid: 1de63813e83f153468eb11db1615f40f, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 1.3060001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1de63813e83f153468eb11db1615f40f, type: 2}

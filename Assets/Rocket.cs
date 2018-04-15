@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Rocket : MonoBehaviour {
 	
@@ -14,6 +15,7 @@ public class Rocket : MonoBehaviour {
 	Rigidbody rigidBody;
 	AudioSource audioSource;
     enum State {Alive, Dead, Transcend};
+    bool collisionsDisabled = false;
     State state = State.Alive;
 	// Use this for initialization
 	void Start () {
@@ -27,10 +29,24 @@ public class Rocket : MonoBehaviour {
         if (state==State.Alive)  
 		{RespondToThrustInput();
 		RespondToRotateInput();}
+        //only if debug ON
+        if (Debug.isDebugBuild)
+        {RespondToDebugKeys();}
 	}
+
+    private void RespondToDebugKeys()
+    {
+    
+        if (Input.GetKeyDown(KeyCode.L)) {LoadNextLevel();}
+    
+        else if (Input.GetKeyDown(KeyCode.C)) 
+        {
+            collisionsDisabled = !collisionsDisabled;
+        }
+}
     void OnCollisionEnter(Collision collision)
     {
-        if (state !=State.Alive) {return;} // ignore collisions when dead
+        if (state !=State.Alive || collisionsDisabled) {return;} // ignore collisions when dead
 
         switch (collision.gameObject.tag)
         {
@@ -70,8 +86,12 @@ public class Rocket : MonoBehaviour {
     {SceneManager.LoadScene(0);
     } 
     private void LoadNextLevel()
-    {SceneManager.LoadScene(1);// todo: allow for more than 2 levels
-    } 
+    {int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+    int nextSceneIndex = currentSceneIndex+1 ;
+    if (nextSceneIndex==SceneManager.sceneCountInBuildSettings)
+     {nextSceneIndex=0;} // loop back to start
+    SceneManager.LoadScene(nextSceneIndex);
+    }
 private void RespondToThrustInput()
     {
         if (Input.GetKey(KeyCode.Space))
@@ -104,5 +124,5 @@ private void RespondToThrustInput()
         
        rigidBody.freezeRotation = false; // resume physics control of rotation  
     }
-    
+       
 }
